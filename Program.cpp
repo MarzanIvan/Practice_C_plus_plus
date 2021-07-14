@@ -1,17 +1,20 @@
 #include <iostream>
-#include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
+void f(char *str, int i);
+
 int main(int argc, char *argv[]){
-double a, b;
-if (argc!=3){
-	cout << "You forget enter two value\n\a";
-	return 1;
+int last;
+for (int i=1;i<argc;i++){
+last = strlen(argv[i]);
+while(last>-1){
+cout << argv[i][last] << ' ';
+last--;
 }
-a = atof(argv[1]);
-b = atof(argv[2]);
-cout << a << " + " << b << " = " << a + b << endl;
-cout << "End\a";
+cout << '\n';
+}
 return 0;
 }
+
