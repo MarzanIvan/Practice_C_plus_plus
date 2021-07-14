@@ -2,28 +2,16 @@
 
 using namespace std;
 
-int fact(int n);
-int iterf(int n);
+void f(char *str);
 
 int main(){
-int n;
-cout << "Enter value for find factorial: " << endl;
-cin >> n;
-cout << n << "! = ";
-cout << iterf(n) << endl;
+char str[] = "system is kind";
+f(str);
 return 0;
 }
 
-int fact(int n){
-int x;
-if (n==1) return(1);
-x = fact(n-1) * n;
-return (x);
-}
-
-
-int iterf(int n){
-int x = 1;
-for(int i=1;i<=n;i++) x = x * i;
-	return x;
+void f(char *str){
+if(*str)f(str+1);
+else return;
+cout << *str;
 }
