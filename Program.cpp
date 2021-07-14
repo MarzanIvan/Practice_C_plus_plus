@@ -11,6 +11,7 @@ if (argc!=3){
 }
 a = atof(argv[1]);
 b = atof(argv[2]);
-cout << a + b;
+cout << a << " + " << b << " = " << a + b << endl;
+cout << "End\a";
 return 0;
 }
