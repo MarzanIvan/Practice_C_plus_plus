@@ -3,8 +3,6 @@
 
 using namespace std;
 
-void f(char *str, int i);
-
 int main(int argc, char *argv[]){
 int last;
 for (int i=1;i<argc;i++){
