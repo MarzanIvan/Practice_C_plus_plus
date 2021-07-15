@@ -2,25 +2,16 @@
 
 using namespace std;
 
-int *f(int *p);
+void f(int &x);
 
 int main(){
-int mass[10], *p;
-for(int i=0;i<10;i++){
-p = &mass[i];
-*p = 1 + rand() % 15;
-cout << *p << ' ';
-}
-p = f(&mass[0]);
-cout << '\n' << "Minimum value array = " << *p;
+int x = 1;
+cout << "Old x = " << x << endl;
+f(x);
+cout << "New x = " << x << endl;
 return 0;
 }
 
-int *f(int *p){
-int *p1 = p;
-while (*p){
-if(*p<*p1) p1 = p;
-p++;
-}
-return p1;
+void f(int &x){
+x = 24;
 }
