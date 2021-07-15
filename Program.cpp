@@ -2,16 +2,25 @@
 
 using namespace std;
 
-void f(char *str);
+int *f(int *p);
 
 int main(){
-char str[] = "system is kind";
-f(str);
+int mass[10], *p;
+for(int i=0;i<10;i++){
+p = &mass[i];
+*p = 1 + rand() % 15;
+cout << *p << ' ';
+}
+p = f(&mass[0]);
+cout << '\n' << "Minimum value array = " << *p;
 return 0;
 }
 
-void f(char *str){
-if(*str)f(str+1);
-else return;
-cout << *str;
+int *f(int *p){
+int *p1 = p;
+while (*p){
+if(*p<*p1) p1 = p;
+p++;
+}
+return p1;
 }
