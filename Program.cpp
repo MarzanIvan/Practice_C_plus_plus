@@ -2,16 +2,23 @@
 
 using namespace std;
 
-void f(int &x);
+void f(int &x, int &y);
 
 int main(){
-int x = 1;
-cout << "Old x = " << x << endl;
-f(x);
-cout << "New x = " << x << endl;
+int a, b;
+cout << "Enter A: ";
+cin >> a;
+cout << "Enter B: ";
+cin >> b;
+f(a,b);
+cout << '\n' << "Changed A = " << a << endl;
+cout << "Changed B = " << b << endl;
 return 0;
 }
 
-void f(int &x){
-x = 24;
+void f(int &x, int &y){
+int temp;
+temp = x;
+x = y;
+y = temp;
 }
