@@ -2,23 +2,19 @@
 
 using namespace std;
 
-void f(int &x, int &y);
+double &f();
+double value = 100.1;
 
 int main(){
-int a, b;
-cout << "Enter A: ";
-cin >> a;
-cout << "Enter B: ";
-cin >> b;
-f(a,b);
-cout << '\n' << "Changed A = " << a << endl;
-cout << "Changed B = " << b << endl;
+	double x;
+cout << f();
+f() = 33 + 2 - 11;
+x = f();
+cout << '\n' << f() << endl;
+cout << " X = " << x;
 return 0;
 }
 
-void f(int &x, int &y){
-int temp;
-temp = x;
-x = y;
-y = temp;
+double &f(){
+return value;
 }
