@@ -2,19 +2,34 @@
 
 using namespace std;
 
-double &f(int i);
-double value[] = {0.1,0.2,0.3,0.4,0.5,0.6,0};
+double &get(int i); 
+double &place(int i); 
+
+double value[10];
+double error = -1;
+
 
 int main(){
-double *p;
-for(p=value;*p;p++) cout << *p << ' ';
-f(3) = 1.5;
-f(1) = 1.2;
-cout << endl;
-for(p=value;*p;p++) cout << *p << ' ';
+
+place(0) = 23.4;
+place(4) = 23.4;
+place(9) = 23.4;
+place(12) = 12;
 return 0;
 }
 
-double &f(int i){
-	return value[i];
+double &get(int i){
+if (i>-1 && i<10) return value[i];
+else{
+	cout << '\n' << "Error!!! \n You are trying to overstep the bounds of the array" << endl;
+	return error;
+}
+}
+
+double &place(int i){
+if (i>-1 && i<10) return value[i];
+else{
+	cout << '\n' << "Error!!! \n You are trying to overstep the dounds of the array" << endl;
+	return error;
+}
 }
