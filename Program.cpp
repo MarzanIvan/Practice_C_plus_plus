@@ -2,34 +2,28 @@
 
 using namespace std;
 
-double &get(int i); 
-double &place(int i); 
-
-double value[10];
-double error = -1;
-
+int f(int x);
+long f(long x);
+double f(double x);
 
 int main(){
-
-place(0) = 23.4;
-place(4) = 23.4;
-place(9) = 23.4;
-place(12) = 12;
+cout << "module your value with type of int = " << f(-3) << endl;
+cout << "module your value with type of long = " << f(-11.5) << endl;
+cout << "module your value with type of double = " << f(-6L) << endl;
 return 0;
 }
 
-double &get(int i){
-if (i>-1 && i<10) return value[i];
-else{
-	cout << '\n' << "Error!!! \n You are trying to overstep the bounds of the array" << endl;
-	return error;
-}
+int f(int x){
+if (x<0) return -x;
+else return x;
 }
 
-double &place(int i){
-if (i>-1 && i<10) return value[i];
-else{
-	cout << '\n' << "Error!!! \n You are trying to overstep the dounds of the array" << endl;
-	return error;
+long f(long x){
+if (x<0) return -x;
+else return x;
 }
+
+double f(double x){
+if (x<0) return -x;
+else return x;
 }
