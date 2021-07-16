@@ -2,19 +2,19 @@
 
 using namespace std;
 
-double &f();
-double value = 100.1;
+double &f(int i);
+double value[] = {0.1,0.2,0.3,0.4,0.5,0.6,0};
 
 int main(){
-	double x;
-cout << f();
-f() = 33 + 2 - 11;
-x = f();
-cout << '\n' << f() << endl;
-cout << " X = " << x;
+double *p;
+for(p=value;*p;p++) cout << *p << ' ';
+f(3) = 1.5;
+f(1) = 1.2;
+cout << endl;
+for(p=value;*p;p++) cout << *p << ' ';
 return 0;
 }
 
-double &f(){
-return value;
+double &f(int i){
+	return value[i];
 }
