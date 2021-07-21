@@ -3,8 +3,13 @@
 using namespace std;
 
 void CC(char str);
+void confbit(unsigned x);
 
 int main(){
+confbit(5);
+
+
+/*	
 char letter;
 do{
 cin >> letter;
@@ -13,9 +18,19 @@ cout << letter << "& 11011111(223) = ";
 letter = letter & 223;
 CC(letter);
 }while(letter!='Q');
-
+*/
 return 0;
 }
+
+void confbit(unsigned x){
+register int i;
+for(i=128;i>0;i=i/2){
+	if(x & i)cout << " 1 ";
+	else cout << " 0 ";
+	cout << '\n';
+}
+}
+
 
 void CC(char str){
 	register int i, ost, chislo[15], j = 0;
@@ -30,4 +45,5 @@ j++;
 cout << " 2CC = ";
 for(int i=j-1;i>=0;i--) cout << chislo[i] << ' ';
 cout << endl;
+
 }
