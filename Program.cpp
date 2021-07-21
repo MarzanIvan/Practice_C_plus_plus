@@ -9,12 +9,18 @@ void Bigletter();
 
 int main(){
 unsigned n;
-cout << "Enter number (0 to 255): ";
-cin >> n;
-cout << "Him binary code: ";
-confbit(n);
-cout << "Its addition ~" << n << ": "; 
-confbit(~n);
+n = 256;
+for(int i=0;i<8;i++){
+	cout << n << endl;
+	confbit(n);
+	n = n >> 1;
+}
+n=1;
+for(int i=0;i<8;i++){
+	cout << n << endl;
+	confbit(n);
+	n = n << 1;
+}
 return 0;
 }
 
