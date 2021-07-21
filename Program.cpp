@@ -6,19 +6,24 @@ void CC(char str);
 void confbit(unsigned x);
 
 int main(){
-confbit(5);
 
-
-/*	
 char letter;
 do{
+cout << "Doing small letter " << endl;
+cin >> letter;
+CC(letter);
+cout << letter << "| 100000(32) = ";
+letter = letter | 32;
+CC(letter);
+}while(letter!='q');
+do{
+cout << "Doing big letter " << endl;
 cin >> letter;
 CC(letter);
 cout << letter << "& 11011111(223) = ";
 letter = letter & 223;
 CC(letter);
 }while(letter!='Q');
-*/
 return 0;
 }
 
@@ -27,11 +32,8 @@ register int i;
 for(i=128;i>0;i=i/2){
 	if(x & i)cout << " 1 ";
 	else cout << " 0 ";
-	cout << '\n';
 }
 }
-
-
 void CC(char str){
 	register int i, ost, chislo[15], j = 0;
 	i = (int) str;
