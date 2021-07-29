@@ -1,18 +1,20 @@
 #include <iostream>
-#include <cmath>
+#include <cstdio>
 
 using namespace std;
 
 int main(){
-float x, y, c;
-double pi = 3.141592;
-cout << "Enter X: ";
-cin >> x;
-cout << "Enter Y: ";
-cin >> y;
-x = x * pi/180;
-y = y * pi/180;
-c = pow(1 - sin(x)/cos(x),cos(x)/sin(x)) + cos(x-y);
-cout << "Answer = " <<  c;
+register char *p, *p1;
+int count = 0;
+gets(p);
+p1 = p;
+while(*p1){
+  if(*p1!=' '){
+    while(*p1!=' ')p1++;
+    count++;
+  } 
+p1++;
+};
+cout << count;
 return 0;
 }
