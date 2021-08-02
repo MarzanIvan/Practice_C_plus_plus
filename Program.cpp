@@ -3,34 +3,13 @@
 using namespace std;
 
 int main(){
-  int size, total = 0;
-  register int i, j, r, number;
-cout << "Enter dimension matrix: ";
-cin >> size;
-int **mass = new int*[size], **minor = new int*[size];
-for(i=0;i<size;i++){mass[i] = new int[size]; minor[i] = new int[size];} 
-for(i=0;i<size;i++){
-for(j=0;j<size;j++){
-mass[i][j] = rand() % 10;
-cout << mass[i][j] << ' ';
-}cout << endl; }
-//Заполнение минора
-for(r=0;r<size;r++){
-number = 0;
-for(i=0;i<size;i++){
-for(j=0;j<size;j++){
-  if((r!=i)&&j){
-    minor[r][number] = mass[i][j];
-    number++;
-  } 
-}}}
-
-//Second
-for(i=0;i<size;i++){
- minor[i][0] = minor[i][0] * minor[i][3] - minor[i][2] * minor[i][1];
- minor[i][0] = minor[i][0] * mass[i][0];
+  register double x; register int c, m, a, y;
+  cout << "Enter A (0 <= A < M): "; cin >> a;
+  cout << "Enter Y (0 <= Y < M): "; cin >> y;
+  cout << "Enter M (M >= A && Y && 2): "; cin >> m;
+for(c=0;c<=m;c++){
+x = (y = (a * y + c) % m, (double)(y + 1) / m);
+cout << '[' << y << "] = " << x << endl;
 }
-total = minor[0][0] - minor[1][0] + minor[2][0];
-cout << "\n Total = " << total;
 return 0;
 }
