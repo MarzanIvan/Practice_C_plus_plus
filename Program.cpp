@@ -3,11 +3,10 @@
 using namespace std;
 
 int main(){
-int x, y;
-cout << "Enter x: "; cin >> x;
-cout << "Enter y: "; cin >> y;
-if(!x|!y) return 0;
-if(x<0)if(y>0)cout <<"Second";else cout <<"Third"; else if(y>0)cout <<"First";else cout <<"Fourth";
-cout << " quater plane";
+register char *p = {"Good morning!\nGood weatger today\nI Would cup coffee"};
+int amount = 1;
+cout << "Content: \n" << p << endl;
+for(int i=0;p[i];i++) if(p[i]=='\n') amount++;
+cout << "Amount strings: " << amount;
 return 0;
 }
