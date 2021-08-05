@@ -2,16 +2,19 @@
 
 using namespace std;
 
-void f(int size), f1(int size), build(int width, int higt);
-
 int main(){
-int len1, len2, wid1, higt1, higt2;
-cout << "Enter lenght, width and higt of the brick: "; cin >> len1 >> wid1 >> higt1;
-cout << "Enter lenght and higt of the hole: "; cin >> len2 >> higt2;
-build(len1,higt1);build(wid1,higt1);build(len1,wid1);
-if(higt1<=higt2&&wid1<=len2) cout << "Brick went to hole"; else cout << "Brick don't went ):";
+int choose, higt, width; char ch; register i, j, c, t;
+cout << "Choose symbol: \n" << "1. *\n" << "2. +\n" << "3. #\n" << endl;cout << "Your choose: "; cin >> choose;
+switch (choose){
+	case 1: ch = '*'; break; case 2: ch = '+'; break; case 3: ch = '#'; break;
+	default: {cout << "Don't found"; return 0;}
+}
+cout << "Enter higt: "; cin >> higt;
+cout << "Enter width: "; cin >> width;
+for(i=1,j=c=(width/2)+1;i<=higt;i++){
+for(t=1;t<=width;t++)if(t==j||t==c) cout << ch; else cout << ' ';
+if(i<(width/2)+1){j--;c++;}else{j++;c--;}
+cout << endl;
+}
 return 0;
 }
-void build(int width, int higt){f(width); for(int i=1;i<higt;i++) f1(width); f(width);}
-void f(int size){for(int i=1;i<=size;i++)cout <<'*';cout << endl;} 
-void f1(int size){for(int i=1;i<=size;i++)if(i==1||i==size) cout << '*'; else cout << ' '; cout << endl;}
