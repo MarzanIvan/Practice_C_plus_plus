@@ -1,10 +1,11 @@
 #include <iostream>
-#include <cstring>
+#include <cmath>
+
 using namespace std;
 
 int main(){
-char *p; cout << "Enter value below hundred thousand: "; cin >> p;
-for(register int i=0,j=strlen(p)-1;i<((int)strlen(p)/2);i++,j--){if(p[i]!=p[j]){cout << "Value isn't palinbrome!";return 0;}
-}cout << "Value is palindrome!";
+float a, b, h;
+cout << "Enter initial values A, B, H: "; cin >> a >> b >> h;
+cout << "y = ";for(register float i=a;i<=b;i=i+h){cout << pow(cos(i)/sin(i),2)*log(i) << "; ";}
 return 0;
 }
