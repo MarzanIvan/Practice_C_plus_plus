@@ -1,10 +1,14 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
 int main(){
-int size; cout << "Enter the size of the array: "; cin >> size; float *mass = new float[size], total = 0;
-cout << "Enter values: "; for(register int i=0;i<size;i++){cin >> mass[i]; total+=mass[i];} 
-cout << "Average = " << (float)total/size; 
+register int n, i, j;float t1=0,t2=0; cout << "Enter n: "; cin >> n;
+float pi = 3.1415;
+for(i=1;i<=n;i++){
+for(j=1;j<=i;j++)t2+=sin(j * (pi/180));
+  t1+=1/t2; t2=0;	 
+}cout << "Total = " << t1;
 return 0;
 }
