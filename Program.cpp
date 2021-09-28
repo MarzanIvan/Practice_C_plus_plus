@@ -1,21 +1,50 @@
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
-enum ocenk{good, bad};
-struct revise{ int trouble; ocenk ball; }students[3];
+class Array{
+   double *array;
+   int size;
+   public:
+   Array();
+   ~Array(){ delete[] array; }
+   double *getarray(){ return array;}
+   void generate(){ Array();}
+   double min();
+   void sort();
+   void show();
+   double max(); 
+};
 
-int f(revise *p){
-int temp;
-for(temp=0;p->trouble;p++) if(p->ball==good) temp++;
-return temp;	
+void Array::sort(){
+    
+}
+
+double Array::min(){
+    double *p = array, min = *p;
+    for(int i=0;i<size;p++,i++)if(*p<min) min = *p;
+    return min;
+}
+double Array::max(){
+    double *p = array, max = *p;
+    for(int i=0;i<size;p++,i++)if(*p>max) max = *p;
+    return max;
+}
+
+Array::Array(){
+    double *p;
+    cout << "Enter amount elements of the array: ";
+    cin >> size;
+    array = new double[size]; p = array;
+    for(int i=0;i<size;p++,i++){
+        *p = 1 + rand() % 10;
+        cout << *p << ' ';
+    } cout << '\n';
 }
 
 int main(){
-register int i; revise *p;
-for(p = students,i=1;i<=3;i++,p++){cout << "Trouble of student [" << i << "]: ";cin >> p->trouble;}
-for(p = students;p->trouble;p++)p->ball = p->trouble>=2?bad:good;	
-	cout << "Amount a good students aqued " << f(p = students) << endl;
-return 0;
+Array obj;
+cout << "Minimum = " << obj.min() << '\n' << "Maximum = " << obj.max() << endl;
+return 0; 
 }
-
