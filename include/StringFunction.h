@@ -3,8 +3,8 @@
 unsigned int GetAmountSymbolsInString( const char *String ) {
     unsigned int AmountSymbols = 0;
     while(*String) {
-        ++AmountSymbols;
-        ++String;
+        AmountSymbols++;
+        String++;
     }
     return AmountSymbols;
 }
@@ -12,8 +12,8 @@ unsigned int GetAmountSymbolsInString( const char *String ) {
 void CopyString( char *String, const char *StringToCopy ) {
     while(*StringToCopy) {
         *String = *StringToCopy;
-        ++String;
-        ++StringToCopy;
+        String++;
+        StringToCopy++;
     }
     *String = '\0';
 }

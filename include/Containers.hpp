@@ -73,7 +73,7 @@ TemplateType &Container<TemplateType>::operator=( Container<TemplateType> &Objec
     }
     if (ObjectToCopy.Objects) {
         Objects = new TemplateType[AmountObjects];
-        for (register unsigned int i = 0; i < AmountObjects; ++i ) {
+        for (register unsigned int i = 0; i < AmountObjects; i++ ) {
             Objects[i] = ObjectToCopy[i];
         }
     }
@@ -110,7 +110,7 @@ void Container<TemplateType>::AddElement( TemplateType &Object ) {
         return;
     }
     TemplateType *NewListObjects = new TemplateType[AmountObjects + 1];
-    for ( register unsigned int i = 0; i < AmountObjects; ++i ) {
+    for ( register unsigned int i = 0; i < AmountObjects; i++ ) {
         NewListObjects[i] = Objects[i];
     }
     if (AmountObjects != 1) {
@@ -118,12 +118,12 @@ void Container<TemplateType>::AddElement( TemplateType &Object ) {
     }
     NewListObjects[AmountObjects] = Object;
     Objects = NewListObjects;
-    ++AmountObjects;
+    AmountObjects++;
 }
 
 template <class TemplateType>
 void Container<TemplateType>::DeleteElement() {
-    --AmountObjects;
+    AmountObjects--;
     delete &Objects[AmountObjects];
     if (AmountObjects == 0) {
         Objects = 0;

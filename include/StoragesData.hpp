@@ -93,14 +93,6 @@ public:
         return ListFiles->Is_Element_Exist(NumberFile - 1);
     }
 
-    File &GetFile( unsigned int NumberFile ) {
-        if (!ListFiles) {
-            cerr << "There isn't any file in this collection";
-            exit(1);
-        }
-        return ListFiles->operator[](NumberFile - 1);
-    }
-
     ~StorageFiles() {
         if (Name) {
             delete[] Name;
@@ -161,14 +153,6 @@ class Folder : public StorageFiles {
             ListFolders = new Container<Folder>;
         }
         ListFolders->AddElement(AdditionFolder);
-    }
-
-    Folder &GetFolder( unsigned int NumberFolder ) {
-        if (!ListFolders) {
-            cerr << "There isn't any folder in this folder\n";
-            exit(1);
-        }
-        return ListFolders->operator[](NumberFolder - 1);
     }
 
 };
