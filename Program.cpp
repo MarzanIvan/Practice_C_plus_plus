@@ -1,15 +1,16 @@
+
 #include "include/Containers.hpp"
 
-#include <iostream>
-
-using namespace std;
-
 int main() {
+
    int AmountObjects = 0;
+   
    cout << "Enter an amount of objects: ";
    cin >> AmountObjects;
+   
    int *Objects = new int[AmountObjects];
    Container <int> VectorObjects;
+   
    for ( int i = 0; i < AmountObjects; i++ ) {
       VectorObjects.AddElement(Objects[i]);
    }
@@ -17,6 +18,6 @@ int main() {
    for ( int i = 0; i < AmountObjects; i++ ) {
       VectorObjects.DeleteElement();
    }
-   
+   cout << "Good!";
    return 0;
 }
