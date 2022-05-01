@@ -1,9 +1,22 @@
-#include "include/StoragesInformation.hpp"
+#include "include/Containers.hpp"
+
 #include <iostream>
 
 using namespace std;
 
 int main() {
-    
-    return 0;
+   int AmountObjects = 0;
+   cout << "Enter an amount of objects: ";
+   cin >> AmountObjects;
+   int *Objects = new int[AmountObjects];
+   Container <int> VectorObjects;
+   for ( int i = 0; i < AmountObjects; i++ ) {
+      VectorObjects.AddElement(Objects[i]);
+   }
+   
+   for ( int i = 0; i < AmountObjects; i++ ) {
+      VectorObjects.DeleteElement();
+   }
+   
+   return 0;
 }

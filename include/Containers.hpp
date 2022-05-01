@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 template <class TemplateType>
 class Container {
 protected:
@@ -38,6 +40,8 @@ public:
 
     void DeleteElement();
 
+    void Clear();
+
     unsigned int GetSize() {
         return AmountObjects;
     }
@@ -47,18 +51,22 @@ public:
 
 template <class TemplateType>
 Container<TemplateType>::Container( TemplateType Objects[], unsigned int AmountObjects ) {
-    TemplateType *CopyObjects = new TemplateType[AmountObjects];
+    this->Objects = new TemplateType[AmountObjects];
     for (register unsigned int i = 0; i < AmountObjects; i++) {
-        CopyObjects[i] = Objects[i];
+        this->Objects[i] = Objects[i];
     }
-    this->AmountObjects = AmountObjects;
-    this->Objects = CopyObjects;  
+    this->AmountObjects = AmountObjects; 
 }
 
 template <class TemplateType>
 Container<TemplateType>::Container( const Container &ContainerToCopy ) {
-    Objects = new TemplateType[ContainerToCopy.AmountObjects];
     AmountObjects = ContainerToCopy.AmountObjects;
+    if (AmountObjects) {
+        Objects = new TemplateType[ContainerToCopy.AmountObjects];
+    } else {
+        Objects = 0;
+        return;
+    }
     for (register unsigned int i = 0; i < AmountObjects; i++) {
         Objects[i] = ContainerToCopy.Objects[i];
     }
@@ -66,11 +74,15 @@ Container<TemplateType>::Container( const Container &ContainerToCopy ) {
 
 template <class TemplateType>
 TemplateType &Container<TemplateType>::operator=( Container<TemplateType> &ObjectToCopy ) {
-    AmountObjects = ObjectToCopy.AmountObjects;
     if (Objects) {
-        delete[] Objects;
+        if (AmountObjects == 1) {
+            delete Objects;
+        } else {
+            delete[] Objects;
+        }
         Objects = 0;
     }
+    AmountObjects = ObjectToCopy.AmountObjects;
     if (ObjectToCopy.Objects) {
         Objects = new TemplateType[AmountObjects];
         for (register unsigned int i = 0; i < AmountObjects; i++ ) {
@@ -113,7 +125,9 @@ void Container<TemplateType>::AddElement( TemplateType &Object ) {
     for ( register unsigned int i = 0; i < AmountObjects; i++ ) {
         NewListObjects[i] = Objects[i];
     }
-    if (AmountObjects != 1) {
+    if (AmountObjects == 1) {
+        delete Objects;
+    } else {
         delete[] Objects;
     }
     NewListObjects[AmountObjects] = Object;
@@ -123,9 +137,32 @@ void Container<TemplateType>::AddElement( TemplateType &Object ) {
 
 template <class TemplateType>
 void Container<TemplateType>::DeleteElement() {
-    AmountObjects--;
-    delete &Objects[AmountObjects];
-    if (AmountObjects == 0) {
-        Objects = 0;
+    if (!Objects) {
+        return;
     }
+    if (AmountObjects == 1) {
+        AmountObjects--;
+        delete Objects;
+        Objects = 0;
+        return;
+    }
+    TemplateType *NewList = new TemplateType[AmountObjects - 1];
+    for ( register unsigned int i = 0; i < AmountObjects - 1; i++ ) {
+        NewList[i] = Objects[i];
+    }
+    delete[] Objects;
+    Objects = NewList;
+}
+
+template <class TemplateType>
+void Container<TemplateType>::Clear() {
+    if (!AmountObjects) {
+        return;
+    }
+    if (AmountObjects == 1) {
+        delete Objects;
+    } else {
+        delete[] Objects;
+    }
+    AmountObjects = 0;
 }
