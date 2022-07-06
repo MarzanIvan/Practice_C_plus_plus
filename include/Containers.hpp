@@ -9,29 +9,74 @@ struct Item {
         CurrectObject = ObjectToContain;
         NextItem = PreviousItem = nullptr;
     }
+    ~Item() {
+
+    }
+};
+
+class IncorrectIndex {
+
 };
 
 template <class TypeItems>
 class Container {
 protected:
-    Item<TypeItems> *StartElement;
-    Item<TypeItems> *EndElement;
+    Item<TypeItems> *StartItem;
+    Item<TypeItems> *EndItem;
     unsigned int AmountItems;
 public:
     Container( TypeItems *ObjectToContain = nullptr ) {
-        StartElement = new Item<TypeItems>(ObjectToContain);
-        EndElement = StartElement;
+        StartItem = EndItem = nullptr;
         if (!ObjectToContain) {
             AmountItems = 0;
         } else {
             AmountItems = 1;
         }
     }
-    Item<TypeItems> *Container::operator[]( unsigned int IndexItem ) {
-        TypeItems ItemToGet = ;
-        for ( unsigned int i = 0; i < IndexItem; i++ ) {
-            
+    
+    ~Container();
+
+    TypeItems *operator[]( unsigned int IndexItem ) {
+        if ( IndexItem >= AmountItems ) {
+            //throw IncorrectIndex(IndexItem);
         }
+        Item<TypeItems> *ItemToGet = StartItem;
+        for ( unsigned int i = 1; i <= IndexItem; i++ ) {
+            ItemToGet = ItemToGet->NextItem;
+        }
+        return ItemToGet->CurrectObject;
     }
 
+    void PushItem( TypeItems &ItemToContain );
+
 };
+
+template <class TypeItems>
+Container<TypeItems>::~Container() {
+    Item<TypeItems> *ItemToDelete,*TempItem = StartItem;
+    for ( unsigned int i = 0; i < AmountItems; i++ ) {
+        ItemToDelete = TempItem;
+        TempItem = TempItem->NextItem;
+        delete ItemToDelete;
+    }
+}
+
+template <class TypeItems>
+void Container<TypeItems>::PushItem( TypeItems &ItemToContain ) {
+    if (AmountItems == 1) {
+        EndItem = new Item<TypeItems>(&ItemToContain);
+        StartItem->NextItem = EndItem;
+        EndItem->PreviousItem = StartItem;
+        AmountItems++;
+        return;
+    }
+    if (!AmountItems) {
+        StartItem = new Item<TypeItems>(&ItemToContain);
+        AmountItems++;
+        return;
+    }
+    Item<TypeItems> *PreviousItem = EndItem;
+    EndItem->NextItem = new Item<TypeItems>(&ItemToContain);
+    EndItem = EndItem->NextItem;
+    EndItem->PreviousItem = PreviousItem;
+}
