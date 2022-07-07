@@ -13,6 +13,9 @@ int main() {
       array.PushItem(arr[i]);
       cout << *array[i] << ' ';
    }
-   cout << *array[15] << ' ';
+   for (unsigned int i = 0; i < 10; i++ ) {
+      array.PullItem();
+   }
+   
    return 0;
 }
