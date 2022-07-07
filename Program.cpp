@@ -13,6 +13,6 @@ int main() {
       array.PushItem(arr[i]);
       cout << *array[i] << ' ';
    }
-
+   cout << *array[15] << ' ';
    return 0;
 }

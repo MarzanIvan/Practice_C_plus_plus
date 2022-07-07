@@ -9,12 +9,19 @@ struct Item {
         CurrectObject = ObjectToContain;
         NextItem = PreviousItem = nullptr;
     }
-    ~Item() {
-
-    }
 };
 
 class IncorrectIndex {
+    unsigned int IncorrectIndex;
+public:
+
+    IncorrectIndex( unsigned int IncorrectIndex) {
+        this->IncorrectIndex = IncorrectIndex;
+    }
+
+    unsigned int GetIncorrectIndex() {
+        return IncorrectIndex;
+    }
 
 };
 
@@ -38,7 +45,7 @@ public:
 
     TypeItems *operator[]( unsigned int IndexItem ) {
         if ( IndexItem >= AmountItems ) {
-            //throw IncorrectIndex(IndexItem);
+            throw IncorrectIndex(IndexItem);
         }
         Item<TypeItems> *ItemToGet = StartItem;
         for ( unsigned int i = 1; i <= IndexItem; i++ ) {
@@ -79,4 +86,5 @@ void Container<TypeItems>::PushItem( TypeItems &ItemToContain ) {
     EndItem->NextItem = new Item<TypeItems>(&ItemToContain);
     EndItem = EndItem->NextItem;
     EndItem->PreviousItem = PreviousItem;
+    AmountItems++;
 }
